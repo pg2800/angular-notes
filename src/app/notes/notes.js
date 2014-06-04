@@ -1,8 +1,1 @@
-angular.module('Notes', ['LocalStorage'])
-.factory('$notes', ['$localStorage', function ($localStorage) {
-	
-
-	return {
-
-	};
-}])
+angular.module('Notes', ['LocalStorage', 'ngRoute']);

@@ -1,6 +1,6 @@
-describe("Note Module", function() {
-	describe("Module Declaration", function() {
-		it("should find the module", function() {
+describe("Notes Module", function (){
+	describe("Module Declaration", function (){
+		it("should find the module", function (){
 			var $injector = angular.injector(['Notes']);
 			expect($injector).toBeDefined();
 		});
@@ -8,19 +8,19 @@ describe("Note Module", function() {
 
 	beforeEach(module('Notes'));
 
-	describe("Service", function() {
+	describe("Service", function (){
 		var $notes;
 		beforeEach(inject(function (_$notes_){
 			$notes = _$notes_;
 		}));
 
 		it("should find the service", function (){
-			expect().toBeDefined();
+			expect($notes).toBeDefined();
 		});
 
 	});
 
-	describe("Directives", function() {
+	describe("Directives", function (){
 		it("should find the notes directive");
 		it("should find the note directive");
 	});
