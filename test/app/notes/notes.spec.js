@@ -7,7 +7,7 @@ describe("Note Module", function() {
 	});
 
 	beforeEach(module('Notes'));
-	
+
 	describe("Service", function() {
 		var $notes;
 		beforeEach(inject(function (_$notes_){
