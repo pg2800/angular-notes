@@ -20,8 +20,28 @@ describe("Notes Module", function (){
 
 	});
 
+	var $scope, $compile;
+	beforeEach(inject(function (_$rootScope_, _$compile_){
+		$scope = _$rootScope_.$new();
+		$compile = _$compile_;
+	}));
+
 	describe("Directives", function (){
-		it("should find the notes directive");
-		it("should find the note directive");
+		describe("notes-directive", function() {
+			it("should find the directive", inject(function(notesDirective) {
+				expect(notesDirective).toBeDefined();
+			}));
+			it("should compile the directive correctly", inject(function ($timeout){
+				var elem = $compile("<notes in='variable' class='class1 class2'><div ng-bind='note.name'></div><div ng-bind='note.content'></div></notes>")($scope);
+				$scope.$digest();
+				console.log($("<div>").append(elem).html());
+				expect(elem).not.toBeFalsy();
+				expect($scope.variable).toBeDefined();
+				expect($scope.$parent.variable).not.toBeDefined();
+			}));
+		});
+		describe("newNote-directive", function() {
+			it("should find the newNote directive");
+		});
 	});
 });
