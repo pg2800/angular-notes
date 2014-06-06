@@ -1,0 +1,32 @@
+"<notes in='variable' editable> <new> <input type='text' ng-model='name'></input> <input type='text' ng-model='content'></input> <button ng-click='save()'></button> </new> <note> <div ng-bind='note.name'></div> <div ng-bind='note.content'></div> <div ng-bind='note.date'></div> <div ng-bind='note.lastUpdate'></div> <button ng-click='note.remove()'></button> </note> </notes>"
+
+<notes in='variable' editable>
+	<new>
+		<input type='text' ng-model='name'></input>
+		<input type='text' ng-model='content'></input>
+		<button ng-click='save()'></button>
+	</new>
+	<note>
+		<div ng-bind='note.name'></div>
+		<div ng-bind='note.content'></div>
+		<div ng-bind='note.date'></div>
+		<div ng-bind='note.lastUpdate'></div>
+		<button ng-click='note.remove()'></button>
+	</note>
+</notes>
+
+<notes in="variable" class="ng-scope">
+	<div ng-repeat="note in variable" class="ng-scope">
+		<div ng-bind="note.name" class="ng-scope ng-binding">bla
+		</div>
+		<div ng-bind="note.content" class="ng-scope ng-binding">ble
+		</div>
+		<delete></delete>
+	</div>
+	<div ng-repeat="note in variable" class="ng-scope">
+		<div ng-bind="note.name" class="ng-scope ng-binding">bli
+		</div>
+		<div ng-bind="note.content" class="ng-scope ng-binding">blo
+		</div>
+	</div>
+</notes>

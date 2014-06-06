@@ -32,7 +32,7 @@ describe("Notes Module", function (){
 				expect(notesDirective).toBeDefined();
 			}));
 			it("should compile the directive correctly", inject(function ($timeout){
-				var elem = $compile("<notes in='variable' class='class1 class2'><div ng-bind='note.name'></div><div ng-bind='note.content'></div></notes>")($scope);
+				var elem = $compile("<notes in='variable' editable> <new> <input type='text' ng-model='name'></input> <input type='text' ng-model='content'></input> <button ng-click='save()'></button> </new> <note> <div ng-bind='note.name'></div> <div ng-bind='note.content'></div> <div ng-bind='note.date'></div> <div ng-bind='note.lastUpdate'></div> <button ng-click='note.remove()'></button> </note> </notes>")($scope);
 				$scope.$digest();
 				console.log($("<div>").append(elem).html());
 				expect(elem).not.toBeFalsy();
