@@ -9,58 +9,48 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="kmu">
 	<link rel="stylesheet" type="text/css" href="../vendor/bootstrap-3.1.1/css/bootstrap.min.css">
-	<body>
-		<nav></nav>
-		<header class="jumbotron">
-			<div class="container">
-				<h2 class="text-center">My Second Note Web App</h2>
-				<p class="text-center">We are what you need</p>
-			</div>
-		</header>
-		<div id="main" class="container">
-			<section>
-
-			</section>
-			<article></article>
-			<footer></footer>
+</head>
+<body>
+	<nav></nav>
+	<header class="jumbotron">
+		<div class="container">
+			<h2 class="text-center">My Second Note Web App</h2>
+			<p class="text-center">We are what you need</p>
 		</div>
-		<!-- jQuery --> <script type="text/javascript" src="../vendor/jquery-2.1.1/jquery.min.js"></script>
-		<!-- Bootstrap --> <script type="text/javascript" src="../vendor/bootstrap-3.1.1/js/bootstrap.min.js"></script>
-		<!-- AngularJS --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular.min.js"></script>
-		<!-- AngularJS ngRoute --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-route.min.js"></script>
-		<!-- AngularJS Mocks--> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-mocks.js"></script>
+	</header>
+	<div id="main" class="container">
+		<section>
+			<notes in='variable' editable>
+				<new>
+					<input type='text' ng-model='name'></input>
+					<input type='text' ng-model='content'></input>
+					<button ng-click='save()'>save</button>
+				</new>
+				<note>
+					<p ng-bind='note.name'></p>
+					<p ng-bind='note.content'></p>
+					<p ng-bind='note.date'></p>
+					<p ng-bind='note.lastUpdate'></p>
+					<button ng-click='note.remove()'>remove</button>
+				</note>
+			</notes>
+		</section>
+		<article></article>
+		<footer></footer>
+	</div>
+	<!-- jQuery --> <script type="text/javascript" src="../vendor/jquery-2.1.1/jquery.min.js"></script>
+	<!-- Bootstrap --> <script type="text/javascript" src="../vendor/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+	<!-- AngularJS --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular.min.js"></script>
+	<!-- AngularJS ngRoute --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-route.min.js"></script>
+	<!-- AngularJS Mocks--> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-mocks.js"></script>
+	<script type="text/javascript" src="../src/app/localStorage/localStorage.js"></script>
+	<script type="text/javascript" src="../src/app/notes/notes.js"></script>
+	<script type="text/javascript" src="../src/app/notes/notesService.js"></script>
+	<script type="text/javascript" src="../src/app/notes/notesDirectives.js"></script>
 
-		<script type="text/javascript">
-			angular.module('Main',[])
-			.controller('MainCtrl', function($scope){
-				$scope.notes = [
-				{name:"Ivan", content:"do stuff"}
-				,{name:"Other", content:"more stuff"}
-				];
-				$scope.myName = "";
-				$scope.Content = "";
-				$scope.addData = function (){
-					if($scope.myName != "" && $scope.Content !=""){
-						$scope.notes.push({name:$scope.myName,content:$scope.Content});
-						$scope.newName = ""; $scope.newContent = "";
-					}
-				};
-			})
-			.directive('notes', function () {
-				return {
-					restrict: 'E',
-					transclude: true,
-					template: "<div class='my'><div ng-repeat-start='note in notes'><div ng-transclude></div></div><hr ng-repeat-end></div>",
-				}
-			});
-		</script>
 
-	</head>
-	<body>
-		<div ng-controller="MainCtrl">
-			<notes>
-				<div>name: {{note.name}}</div>
-				<div>content: {{note.content}}</div>
 
-			</body>
-			</html>
+
+
+</body>
+</html>

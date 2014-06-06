@@ -15,18 +15,33 @@
 	</note>
 </notes>
 
-<notes in="variable" class="ng-scope">
-	<div ng-repeat="note in variable" class="ng-scope">
-		<div ng-bind="note.name" class="ng-scope ng-binding">bla
-		</div>
-		<div ng-bind="note.content" class="ng-scope ng-binding">ble
-		</div>
-		<delete></delete>
+<notes in="variable" editable="" class="ng-scope"> 
+	<new class="ng-isolate-scope">
+		<input type="text" ng-model="name" class="ng-pristine ng-valid"> 
+		<input type="text" ng-model="content" class="ng-pristine ng-valid"> 
+		<button ng-click="save()"></button> 
+	</new>
+	<div ng-repeat="note in variable" class="ng-scope"> 
+		<div ng-bind="note.name" class="ng-binding">bla</div> 
+		<div ng-bind="note.content" class="ng-binding">ble</div> 
+		<div ng-bind="note.date" class="ng-binding"></div> 
+		<div ng-bind="note.lastUpdate" class="ng-binding"></div> 
+		<button ng-click="note.remove()"></button> 
 	</div>
-	<div ng-repeat="note in variable" class="ng-scope">
-		<div ng-bind="note.name" class="ng-scope ng-binding">bli
-		</div>
-		<div ng-bind="note.content" class="ng-scope ng-binding">blo
-		</div>
+	<div ng-repeat="note in variable" class="ng-scope"> 
+		<div ng-bind="note.name" class="ng-binding">bli</div> 
+		<div ng-bind="note.content" class="ng-binding">blo</div> 
+		<div ng-bind="note.date" class="ng-binding"></div> 
+		<div ng-bind="note.lastUpdate" class="ng-binding"></div> 
+		<button ng-click="note.remove()"></button> 
 	</div>
-</notes>
+</notes> 
+
+
+<notes in="variable" editable="" class="ng-scope"> 
+	<new class="ng-isolate-scope"> 
+		<input type="text" ng-model="name" class="ng-pristine ng-valid"> 
+		<input type="text" ng-model="content" class="ng-pristine ng-valid"> 
+		<button ng-click="save()"></button> 
+	</new> 
+</notes> 

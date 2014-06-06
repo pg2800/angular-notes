@@ -19,12 +19,17 @@ angular.module('Notes')
 				$notes.watch(this.expression, this.scope);
 			};
 			this.addNote = function (date, name, content, lastUpdate){
-				this.scope[this.expression].push({
+				var self = {
 					date:date
 					,name:name
 					,content:content
 					,lastUpdate:lastUpdate||date
-				});
+					,remove: function (){
+						this.scope[this.expression].splice(this.scope[this.expression].indexOf(self), 1);
+						this.scope.$apply();
+					}
+				};
+				this.scope[this.expression].push(self);
 				this.scope.$apply();
 			};
 			this.deleteNote = function (key){
@@ -35,21 +40,11 @@ angular.module('Notes')
 			return {
 				pre: function preLink(scope, instanceElement, instanceAttrs, controller) {
 					// scope[instanceAttrs.in] = [{name:"bla", content:'ble'},{name:"bli", content:'blo'}];
-					// var specifiedScope = instanceAttrs.scope;
 					var specifiedVariable = instanceAttrs.in;
 
-					// if(!specifiedScope || specifiedScope.length === 0) specifiedScope = "current";
 					if(!specifiedVariable || specifiedVariable.length === 0) specifiedVariable = "notes";
 
 					controller.$bind(specifiedVariable).$from(scope).toLocalStorage();
-				}
-				,post: function postLink(scope, instanceElement, instanceAttrs, controller, transclude) {
-					// var elem;
-					// transclude(function (clone){
-					// 	elem = "<div ng-repeat='note in "+instanceAttrs.in+"'>"+clone.appendTo("<div>").parent().html()+"</div>";
-					// });
-					// elem = $compile(elem)(scope);
-					// instanceElement.append(elem);
 				}
 			};
 		}
@@ -61,22 +56,43 @@ angular.module('Notes')
 		,restrict: 'E'
 		,scope: {}
 		,require: '^notes'
-		,transclude: true
+		// ,transclude: true
 		,controller: function($scope, $element, $attrs, $transclude) {
 		}
 		,compile: function compile(tElement, tAttrs, transclude) {
 			return { 
 				pre: function preLink(scope, instanceElement, instanceAttrs, notesController) {
-					scope.name="";
-					scope.content="";
+					scope.name="Pablo";
+					scope.content="Garcia";
+					scope.$apply();
 				}
 				,post: function postLink(scope, instanceElement, instanceAttrs, notesController) {
-					console.log(notesController);
 					scope.save = function (){
 						notesController.addNote(Date.now(), scope.name, scope.content);
-					}
+					};
 				}
 			};
+		}
+	};
+}])
+.directive('note', ["$compile", function ($compile) {
+	return {
+		priority: 0
+		,transclude: 'element'
+		,restrict: 'E'
+		,scope: false
+		,require: '^notes'
+		,controller: function($scope, $element, $attrs, $transclude) {
+
+		}
+		,link: function postLink(scope, instanceElement, instanceAttrs, notesController, transclude) {
+			var elem;
+			transclude(function (clone){
+				console.log(clone);
+				elem = "<div ng-repeat='note in "+notesController.expression+"'>"+clone.html()+"</div>";
+			});
+			elem = $compile(elem)(scope);
+			instanceElement.parent().append(elem);
 		}
 	};
 }]);
