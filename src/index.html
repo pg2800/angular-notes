@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="boundApp">
 <head>
 	<title></title>
 	<meta charset="UTF-8">
@@ -22,31 +22,48 @@
 		<section>
 			<notes in='variable' editable>
 				<new>
-					<input type='text' ng-model='name'></input>
-					<input type='text' ng-model='content'></input>
-					<button ng-click='save()'>save</button>
-				</new>
-				<note>
-					<p ng-bind='note.name'></p>
-					<p ng-bind='note.content'></p>
-					<p ng-bind='note.date'></p>
-					<p ng-bind='note.lastUpdate'></p>
-					<button ng-click='note.remove()'>remove</button>
-				</note>
-			</notes>
-		</section>
-		<article></article>
-		<footer></footer>
-	</div>
-	<!-- jQuery --> <script type="text/javascript" src="../vendor/jquery-2.1.1/jquery.min.js"></script>
-	<!-- Bootstrap --> <script type="text/javascript" src="../vendor/bootstrap-3.1.1/js/bootstrap.min.js"></script>
-	<!-- AngularJS --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular.min.js"></script>
-	<!-- AngularJS ngRoute --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-route.min.js"></script>
-	<!-- AngularJS Mocks--> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-mocks.js"></script>
-	<script type="text/javascript" src="../src/app/localStorage/localStorage.js"></script>
-	<script type="text/javascript" src="../src/app/notes/notes.js"></script>
-	<script type="text/javascript" src="../src/app/notes/notesService.js"></script>
-	<script type="text/javascript" src="../src/app/notes/notesDirectives.js"></script>
+					<div class="form-group">
+						<label for="name">Note Title</label>
+						<input type="text" class="form-control" id="title" ng-model="name" placeholder="Enter Title">
+					</div>
+					<div class="form-group">
+						<label for="content">Content</label>
+						<input type="text" class="form-control" id="content" ng-model="content" placeholder="Enter your note's content">
+					</div>
+					<button class="btn btn-default" ng-click="save()">Save</button>
+				</form>
+			</new>
+			<note class="row text-center">
+				<div class="col-sm-4,"></div>
+				<div class="col-sm-8">
+					<span ng-bind='note.name'></span> 
+					<span ng-bind='note.content'></span> 
+					<span ng-bind='note.date'></span> 
+					<span ng-bind='note.lastUpdate'></span>
+					<button class="btn btn-default btn-xs" ng-click='note.remove()'>remove</button>
+				</div>
+				<div class="col-sm-4"></div>
+			</note>
+		</notes>
+	</section>
+	<article></article>
+	<footer></footer>
+</div>
+<!-- jQuery --> <script type="text/javascript" src="../vendor/jquery-2.1.1/jquery.min.js"></script>
+<!-- jQuery outerHTML --> <script type="text/javascript" src="common/jquery-outerHTML.js"></script>
+
+<!-- AngularJS --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular.min.js"></script>
+<!-- AngularJS ngRoute --> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-route.min.js"></script>
+<!-- AngularJS Mocks--> <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-mocks.js"></script>
+<!-- AngularJS :: Sanitize Module --> <!-- <script src="../vendor/angularjs-1.2.15/angular-sanitize.min.js"></script> -->
+<!-- AngularJS Resource --> <!-- <script type="text/javascript" src="../vendor/angularjs-1.2.15/angular-resource.min.js"></script> -->
+
+<script type="text/javascript" src="app/localStorage/localStorage.js"></script>
+<script type="text/javascript" src="app/notes/notes.js"></script>
+<script type="text/javascript" src="app/notes/notesService.js"></script>
+<script type="text/javascript" src="app/notes/notesDirectives.js"></script>
+<script type="text/javascript" src="app/boundApp/boundApp.js"></script>
+
 
 
 

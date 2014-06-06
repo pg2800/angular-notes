@@ -46,6 +46,9 @@ angular.module('LocalStorage', [])
 		clean: function (localStorageName){
 			delete window[localStorageName];
 			window.localStorage.removeItem(localStorageName);
+		},
+		clear: function (){
+			localStorage.clear();
 		}
 	};
 }])

@@ -32,12 +32,11 @@ describe("Notes Module", function (){
 				expect(notesDirective).toBeDefined();
 			}));
 			it("should compile the directive correctly", inject(function ($timeout){
-				var elem = $compile("<notes in='variable' editable> <new> <input type='text' ng-model='name'></input> <input type='text' ng-model='content'></input> <button ng-click='save()'></button> </new> <note> <div ng-bind='note.name'></div> <div ng-bind='note.content'></div> <div ng-bind='note.date'></div> <div ng-bind='note.lastUpdate'></div> <button ng-click='note.remove()'></button> </note> </notes>")($scope);
+				var elem = $compile("<notes in='variable' editable> <new> <input type='text' ng-model='name'></input> <input type='text' ng-model='content'></input> <button ng-click='save()'></button> </new> <note hola> <div ng-bind='note.name'></div> <div ng-bind='note.content'></div> <div ng-bind='note.date'></div> <div ng-bind='note.lastUpdate'></div> <button ng-click='note.remove()'></button> </note> </notes>")($scope);
 				$scope.$digest();
-				console.log($("<div>").append(elem).html());
 				expect(elem).not.toBeFalsy();
-				expect($scope.variable).toBeDefined();
-				expect($scope.$parent.variable).not.toBeDefined();
+				expect($scope.variable).not.toBeDefined();
+				expect($scope.$$childHead.variable).toBeDefined();
 			}));
 		});
 		describe("newNote-directive", function() {

@@ -13,7 +13,7 @@ angular.module('Notes')
 
 		scope.$watch(getter, function (newVal){
 			localNotes.put(name, newVal);
-		});
+		}, true);
 	}
 	return {
 		set: set
